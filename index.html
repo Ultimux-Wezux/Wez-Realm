@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Kingdom of Wez | The Luminous Realm</title>
+  <!-- Font Awesome 6 for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #1a1e2b;
+      font-family: 'Segoe UI', 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+      color: #f5efe0;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    
+    .magic-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 30%, #2d3a4f 0%, #141a24 90%);
+      z-index: -2;
+    }
+
+    .stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      background-image: 
+        radial-gradient(2px 2px at 15% 25%, rgba(255, 215, 150, 0.8), transparent),
+        radial-gradient(2px 2px at 45% 15%, rgba(220, 200, 255, 0.7), transparent),
+        radial-gradient(3px 3px at 75% 55%, rgba(255, 230, 180, 0.9), transparent),
+        radial-gradient(2px 2px at 85% 80%, rgba(200, 220, 255, 0.8), transparent),
+        radial-gradient(2px 2px at 10% 70%, rgba(255, 245, 200, 0.7), transparent),
+        radial-gradient(3px 3px at 60% 30%, rgba(210, 180, 255, 0.8), transparent),
+        radial-gradient(1px 1px at 30% 85%, rgba(255, 255, 200, 0.9), transparent),
+        radial-gradient(2px 2px at 90% 10%, rgba(255, 210, 150, 0.8), transparent);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* header / hero */
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      padding: 2rem 1rem;
+    }
+
+    .crown-icon {
+      font-size: 5rem;
+      color: #e6c468;
+      filter: drop-shadow(0 0 15px #b38b40);
+      margin-bottom: 1rem;
+      animation: floatGlow 3s infinite alternate;
+    }
+
+    @keyframes floatGlow {
+      0% { transform: translateY(0px); filter: drop-shadow(0 0 10px #c9a03a); }
+      100% { transform: translateY(-8px); filter: drop-shadow(0 0 25px #f5d742); }
+    }
+
+    h1 {
+      font-size: clamp(3.5rem, 10vw, 6rem);
+      font-weight: 700;
+      font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+      letter-spacing: 0.15em;
+      color: #f7e9c3;
+      text-shadow: 0 0 20px #a97c2d, 0 5px 10px rgba(0,0,0,0.6);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+    }
+
+    .subtitle {
+      font-size: 1.6rem;
+      font-style: italic;
+      color: #dacba4;
+      margin-bottom: 1.8rem;
+      letter-spacing: 0.2em;
+      border-top: 1px solid #b49450;
+      border-bottom: 1px solid #b49450;
+      display: inline-block;
+      padding: 0.6rem 2rem;
+      backdrop-filter: blur(3px);
+    }
+
+    .hero-text {
+      max-width: 700px;
+      font-size: 1.2rem;
+      background: rgba(20, 25, 35, 0.6);
+      backdrop-filter: blur(12px);
+      padding: 1.5rem 2rem;
+      border-radius: 60px 10px 60px 10px;
+      border: 1px solid rgba(230, 196, 104, 0.4);
+      margin: 1.2rem 0 2rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    }
+
+    .btn-explore {
+      background: linear-gradient(135deg, #c9a23b, #8b6e2e);
+      border: none;
+      padding: 1rem 2.8rem;
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #1e1a0f;
+      border-radius: 50px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      box-shadow: 0 0 25px #e6b422;
+      transition: all 0.3s ease;
+      border: 1px solid #f3d779;
+      font-family: 'Cormorant Garamond', serif;
+      margin-top: 0.5rem;
+    }
+
+    .btn-explore:hover {
+      background: linear-gradient(135deg, #e5b845, #b38b40);
+      box-shadow: 0 0 40px #f7d44a;
+      transform: scale(1.05);
+      color: #000;
+    }
+
+    
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin: 2rem 0 1rem;
+      background: rgba(10, 15, 22, 0.7);
+      backdrop-filter: blur(15px);
+      padding: 0.8rem 2.5rem;
+      border-radius: 50px;
+      border: 1px solid #a2894b;
+    }
+
+    .nav-links a {
+      color: #f2e0b0;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.2rem;
+      transition: 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .nav-links a:hover {
+      color: #ffdb8e;
+      text-shadow: 0 0 12px #ebb840;
+      transform: translateY(-2px);
+    }
+
+    
+    section {
+      padding: 4rem 0;
+    }
+
+    .section-title {
+      font-size: 2.8rem;
+      text-align: center;
+      margin-bottom: 2.5rem;
+      font-family: 'Cormorant Garamond', serif;
+      color: #f3da8b;
+      position: relative;
+      letter-spacing: 0.1em;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 90px;
+      height: 3px;
+      background: #c9a23b;
+      margin: 0.5rem auto;
+      box-shadow: 0 0 10px #dfb850;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: rgba(22, 28, 40, 0.75);
+      backdrop-filter: blur(14px);
+      border: 1px solid #5f502b;
+      border-radius: 24px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: all 0.4s;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      border-color: #e4b443;
+      box-shadow: 0 15px 30px rgba(200, 160, 40, 0.3);
+      background: rgba(32, 38, 55, 0.8);
+    }
+
+    .card i {
+      font-size: 2.8rem;
+      color: #e7bc5c;
+      margin-bottom: 1rem;
+      filter: drop-shadow(0 0 8px #b38b2a);
+    }
+
+    .card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 0.8rem;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .royal-quote {
+      background: rgba(0,0,0,0.4);
+      border-left: 6px solid #ccaa44;
+      padding: 2rem;
+      margin: 2.5rem 0;
+      font-style: italic;
+      font-size: 1.4rem;
+      border-radius: 0 30px 30px 0;
+      backdrop-filter: blur(5px);
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+
+    .gallery-item {
+      background: #1f2537;
+      border-radius: 30px;
+      padding: 1.2rem 1.8rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      border: 1px solid #5e4d2b;
+      backdrop-filter: blur(5px);
+      font-size: 1.2rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2.5rem;
+      background: rgba(8, 12, 18, 0.8);
+      margin-top: 3rem;
+      border-top: 1px solid #aa8c42;
+    }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        gap: 1rem;
+        flex-direction: column;
+        align-items: center;
+      }
+      h1 {
+        font-size: 3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="magic-bg"></div>
+  <div class="stars"></div>
+
+  <div class="container">
+    
+    <header class="hero" id="home">
+      <i class="fas fa-crown crown-icon"></i>
+      <h1>WEZ</h1>
+      <div class="subtitle">✦ The Luminous Realm ✦</div>
+      <p class="hero-text">
+        Beyond the Silverthorn Mountains, where twin moons reflect upon crystalline lakes, 
+        lies the Kingdom of Wez — a land of ancient magic, noble griffins, and eternal starlight.
+      </p>
+      <div class="nav-links">
+        <a href="#home"><i class="fas fa-star"></i> Home</a>
+        <a href="#realm"><i class="fas fa-mountain"></i> Realm</a>
+        <a href="#rulers"><i class="fas fa-chess-queen"></i> Rulers</a>
+        <a href="#magic"><i class="fas fa-fire"></i> Magic</a>
+        <a href="#visitor"><i class="fas fa-scroll"></i> Welcome</a>
+      </div>
+      <button class="btn-explore" onclick="document.getElementById('realm').scrollIntoView({behavior:'smooth'})">
+        <i class="fas fa-feather-alt"></i> Begin Journey
+      </button>
+    </header>
+
+    
+    <section id="realm">
+      <h2 class="section-title"><i class="fas fa-map-marked-alt"></i> The Glimmering Lands</h2>
+      <div class="card-grid">
+        <div class="card">
+          <i class="fas fa-water"></i>
+          <h3>Crystal Mere</h3>
+          <p>A lake of liquid moonlight, home to water sprites and prophetic visions. Its waters never freeze.</p>
+        </div>
+        <div class="card">
+          <i class="fas fa-tree"></i>
+          <h3>Whisperwood</h3>
+          <p>Ancient trees murmur secrets of the past. The forest shifts paths for those pure of heart.</p>
+        </div>
+        <div class="card">
+          <i class="fas fa-mountain"></i>
+          <h3>Thronepeak</h3>
+          <p>The royal citadel carved into a floating shard of starstone, suspended above the capital.</p>
+        </div>
+      </div>
+      <div class="royal-quote">
+        <i class="fas fa-quote-left" style="color:#e6b422;"></i> 
+        In Wez, even the stones remember the first dawn. The kingdom breathes with the rhythm of old spells.
+      </div>
+    </section>
+
+    
+    <section id="rulers">
+      <h2 class="section-title"><i class="fas fa-chess-king"></i> Sovereigns of Wez</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 2rem; align-items: center; justify-content: center;">
+        <div style="flex: 1; min-width: 280px;">
+          <div class="card" style="text-align: left;">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <i class="fas fa-crown" style="font-size: 2.5rem; color: #f3cd5e;"></i>
+              <h3 style="margin:0;">Queen Satbi Wez</h3>
+            </div>
+            <p style="margin-top: 1rem;">The Starborn monarch, crowned in sapphire flame. Her wisdom binds the five houses. She speaks the language of griffins.</p>
+            <p><i class="fas fa-feather"></i> Royal sigil: A silver phoenix within a crescent moon.</p>
+          </div>
+        </div>
+        <div style="flex: 1; min-width: 280px;">
+          <div class="gallery" style="flex-direction: column;">
+            <div class="gallery-item"><i class="fas fa-shield-haltered"></i> Royal Houses </div>
+            <div class="gallery-item"><i class="fas fa-dragon"></i> House Drakos – Bonded to the last sky drakes</div>
+            <div class="gallery-item"><i class="fas fa-gem"></i> House Luminara – Masters of crystal enchantment</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+    <section id="magic">
+      <h2 class="section-title"><i class="fas fa-hand-sparkles"></i> Arcane Wonders</h2>
+      <div class="card-grid">
+        <div class="card">
+          <i class="fas fa-moon"></i>
+          <h3>Twin Moons Blessing</h3>
+          <p>Every eclipse, magic surges. The kingdom celebrates the Festival of Silver Veil.</p>
+        </div>
+        <div class="card">
+          <i class="fas fa-feather"></i>
+          <h3>Griffin Companions</h3>
+          <p>Each noble heir is chosen by a griffin hatchling. Their bond is eternal.</p>
+        </div>
+        <div class="card">
+          <i class="fas fa-book-spells"></i>
+          <h3>Starwoven Library</h3>
+          <p>Books written in constellations, guarded by astral sentinels beneath Thronepeak.</p>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 2rem;">
+        <p style="font-style: italic; background: rgba(201, 162, 59, 0.2); padding: 1rem; border-radius: 40px;">
+          <i class="fas fa-sparkles"></i> "Magic in Wez is not taken — it is given by the land to those who listen."
+        </p>
+      </div>
+    </section>
+
+    
+    <section id="visitor">
+      <h2 class="section-title"><i class="fas fa-scroll"></i> Traveler's Welcome</h2>
+      <div style="background: rgba(20, 25, 38, 0.8); backdrop-filter: blur(12px); border-radius: 50px; padding: 2.5rem; text-align: center; border: 1px solid #b3924b;">
+        <i class="fas fa-dove" style="font-size: 2.5rem; color: #cfb053;"></i>
+        <h3 style="font-size: 2rem; margin: 1rem 0;">A Message from the Crown</h3>
+        <p style="font-size: 1.3rem; max-width: 700px; margin: 0 auto 1.5rem;">
+          "Stranger, you enter the Kingdom of Wez under the light of the twin moons. 
+          May your heart be brave, your words true, and your path illuminated by stardust."
+        </p>
+        <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin: 2rem 0;">
+          <span><i class="fas fa-horse"></i> Stables of Cloudmere</span>
+          <span><i class="fas fa-utensils"></i> Hall of Amber Feasts</span>
+          <span><i class="fas fa-ring"></i> Enchanted Market</span>
+        </div>
+        
+        <div id="blessing-counter" style="margin-top: 1.5rem; background: #2a2f3c; padding: 1rem; border-radius: 30px; display: inline-block;">
+          <i class="fas fa-star" style="color: #e4b443;"></i> 
+          <span id="visitorCount">1,742</span> blessed travelers have crossed the Silverthorn.
+        </div>
+        <button id="receiveBlessing" class="btn-explore" style="margin-top: 1.5rem; font-size: 1.2rem; padding: 0.7rem 2rem;">
+          <i class="fas fa-hand-holding-heart"></i> Receive Kingdom's Blessing
+        </button>
+      </div>
+    </section>
+
+    <footer>
+      <p><i class="fas fa-feather-alt"></i> Kingdom of Wez · Established in the Age of Starlight <i class="fas fa-feather-alt"></i></p>
+      <p style="margin-top: 0.5rem; color: #c2aa6b;">© The Luminous Chronicle · All realms preserved by ancient pact</p>
+    </footer>
+  </div>
+
+  <script>
+    (function() {
+      
+      const blessingBtn = document.getElementById('receiveBlessing');
+      const visitorSpan = document.getElementById('visitorCount');
+      
+      
+      let currentVisitors = 1742;
+      
+      function updateVisitorDisplay() {
+        if (visitorSpan) {
+          visitorSpan.textContent = currentVisitors.toLocaleString();
+        }
+      }
+
+      blessingBtn.addEventListener('click', function() {
+        
+        currentVisitors += 1;
+        updateVisitorDisplay();
+        
+        
+        const messages = [
+          "✨ May the twin moons guide you! ✨",
+          "🌟 A griffin feather for your journey! 🌟",
+          "🔮 Stardust blessing upon you! 🔮",
+          "🕊️ The Queen smiles on your path! 🕊️",
+          "📜 Your name is written in starlight. 📜"
+        ];
+        const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+        
+        
+        const toast = document.createElement('div');
+        toast.innerText = randomMsg;
+        toast.style.position = 'fixed';
+        toast.style.bottom = '30px';
+        toast.style.left = '50%';
+        toast.style.transform = 'translateX(-50%)';
+        toast.style.background = 'rgba(20, 20, 30, 0.9)';
+        toast.style.backdropFilter = 'blur(15px)';
+        toast.style.color = '#f7e28c';
+        toast.style.padding = '12px 30px';
+        toast.style.borderRadius = '40px';
+        toast.style.fontSize = '1.3rem';
+        toast.style.fontWeight = 'bold';
+        toast.style.border = '1px solid #dbb44b';
+        toast.style.boxShadow = '0 0 35px #e4b443';
+        toast.style.zIndex = '9999';
+        toast.style.letterSpacing = '0.05em';
+        document.body.appendChild(toast);
+        
+        
+        setTimeout(() => {
+          toast.style.opacity = '0';
+          toast.style.transition = 'opacity 0.8s ease';
+          setTimeout(() => {
+            if (toast.parentNode) {
+              toast.parentNode.removeChild(toast);
+            }
+          }, 800);
+        }, 2500);
+      });
+
+      
+      updateVisitorDisplay();
+      
+      
+      window.addEventListener('scroll', () => {
+        const hero = document.querySelector('.hero');
+        if (hero) {
+          const scrolled = window.scrollY;
+          if (scrolled > 100) {
+            hero.style.opacity = Math.max(0.7, 1 - scrolled / 700);
+          } else {
+            hero.style.opacity = '1';
+          }
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
